@@ -48,6 +48,7 @@ const LARGE_ARRAY_SIZE = 200
 
 function baseDifference(array, values, iteratee, comparator) {
   let includes = arrayIncludes
+  // 标志是否是普通操作
   let isCommon = true
   const result = []
   const valuesLength = values.length
@@ -55,13 +56,16 @@ function baseDifference(array, values, iteratee, comparator) {
   if (!array.length) {
     return result
   }
+  // iteratee:迭代器函数(会对每个value进行的操作)
   if (iteratee) {
     values = map(values, (value) => iteratee(value))
   }
+  // comparator:比较器(会对每个value进行的操作)
   if (comparator) {
     includes = arrayIncludesWith
     isCommon = false
   }
+  // 长数组优化
   else if (values.length >= LARGE_ARRAY_SIZE) {
     includes = cacheHas
     isCommon = false
