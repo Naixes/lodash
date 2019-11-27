@@ -3,6 +3,7 @@ import MapCache from './MapCache.js'
 /** Used to stand-in for `undefined` hash values. */
 const HASH_UNDEFINED = '__lodash_hash_undefined__'
 
+// 存储一组唯一值数组
 class SetCache {
 
   /**
