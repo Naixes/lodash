@@ -19,14 +19,14 @@ function chunk(array, size = 1) {
   // size：可以是一组值，这里只取最大值
   // **获取数组中的最大值：Math.max.apply(null,[10, 20,30]);/var max = Math.max(...arr);**
   size = Math.max(toInteger(size), 0)
-  console.log('size', size)
+  // console.log('size', size)
   // 获取长度
   const length = array == null ? 0 : array.length
   // 数组为空或size小于1返回空数组
   if (!length || size < 1) {
     return []
   }
-  console.log('length', length)
+  // console.log('length', length)
   // 原数组索引
   let index = 0
   // 新数组索引
@@ -42,4 +42,4 @@ function chunk(array, size = 1) {
 }
 
 // export default chunk
-console.log(chunk([1,2,3,4,5,6,7], (1,2,3)))
+// console.log(chunk([1,2,3,4,5,6,7], (1,2,3)))
