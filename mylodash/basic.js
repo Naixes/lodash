@@ -1,6 +1,18 @@
+console.log('==================isObject================')
+
+
+function isObject(value) {
+  const type = typeof value
+  // 判断不等于null并且type为object或function
+  return value != null && (type === 'object' || type === 'function')
+}
+
+console.log('isObject(null)', isObject(null))
+console.log('isObject(() => {})', isObject(() => {}))
+
 console.log('==================toNumber================')
 
-import isObject from '../isObject.js'
+// import isObject from '../isObject.js'
 import isSymbol from '../isSymbol.js'
 
 const NAN = 0 / 0
