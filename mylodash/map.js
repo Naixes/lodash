@@ -15,12 +15,3 @@ function square(n) {
 }
 
 console.log(map([4, 8], square))
-
-// 这个版本不支持
-
-// const users = [
-//     { 'user': 'barney' },
-//     { 'user': 'fred' }
-//   ]
-
-// console.log(map(users, 'user'))
