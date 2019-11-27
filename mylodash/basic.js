@@ -1,6 +1,23 @@
+console.log('==================isSymbol================')
+
+// import getTag from '../.internal/getTag.js'
+// Gets the `toStringTag` of `value`
+function getTag(value) {
+  if (value == null) {
+    return value === undefined ? '[object Undefined]' : '[object Null]'
+  }
+  return toString.call(value)
+}
+
+// 判断是否symbol
+function isSymbol(value) {
+  const type = typeof value
+  return type == 'symbol' || (type === 'object' && value != null && getTag(value) == '[object Symbol]')
+}
+
 console.log('==================isObject================')
 
-
+// 判断是否对象
 function isObject(value) {
   const type = typeof value
   // 判断不等于null并且type为object或function
@@ -13,7 +30,7 @@ console.log('isObject(() => {})', isObject(() => {}))
 console.log('==================toNumber================')
 
 // import isObject from '../isObject.js'
-import isSymbol from '../isSymbol.js'
+// import isSymbol from '../isSymbol.js'
 
 const NAN = 0 / 0
 
