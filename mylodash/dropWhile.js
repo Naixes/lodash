@@ -9,13 +9,13 @@ function baseWhile(array, predicate, isDrop, fromRight) {
 
   console.log('index', index)
 
-  // 遇到第一个false就停止
+  // 遇到第一个false就停止,记录第一个false的位置
   while ((fromRight ? index-- : ++index < length) &&
     predicate(array[index], index, array)) {}
 
   console.log('index', index)
 
-  //   裁切
+  // 裁切/保留符合条件的
   return isDrop
     ? slice(array, (fromRight ? 0 : index), (fromRight ? index + 1 : length))
     : slice(array, (fromRight ? index + 1 : 0), (fromRight ? length : index))
@@ -39,4 +39,17 @@ const users = [
 ]
 
 console.log(dropWhile(users, ({ active }) => active))
+// => objects for ['pebbles']
+
+console.log('==================dropRightWhile================')
+
+// import baseWhile from '../.internal/baseWhile.js'
+
+function dropRightWhile(array, predicate) {
+  return (array != null && array.length)
+    ? baseWhile(array, predicate, true, true)
+    : []
+}
+
+console.log(dropRightWhile(users, ({ active }) => active))
 // => objects for ['pebbles']
