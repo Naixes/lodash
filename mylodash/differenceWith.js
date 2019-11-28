@@ -1,8 +1,24 @@
+console.log('==================arrayIncludesWith================')
+
+// 判断array是否包含target,判断规则为comparator
+function arrayIncludesWith(array, target, comparator) {
+  if (array == null) {
+    return false
+  }
+
+  for (const value of array) {
+    if (comparator(target, value)) {
+      return true
+    }
+  }
+  return false
+}
+
 console.log('==================baseDifference================')
 
 import SetCache from '../.internal/SetCache.js'
 import arrayIncludes from '../.internal/arrayIncludes.js'
-import arrayIncludesWith from '../.internal/arrayIncludesWith.js'
+// import arrayIncludesWith from '../.internal/arrayIncludesWith.js'
 import map from '../map.js'
 import cacheHas from '../.internal/cacheHas.js'
 
@@ -53,6 +69,7 @@ function baseDifference(array, values, iteratee, comparator) {
       // 不相同时加入result
       result.push(value)
     }
+    // 判断是否包含,不包含时加入result
     else if (!includes(values, computed, comparator)) {
       result.push(value)
     }
@@ -60,23 +77,23 @@ function baseDifference(array, values, iteratee, comparator) {
   return result
 }
 
-console.log('==================differenceBy================')
+console.log('==================differenceWith================')
 
 // import baseDifference from '../.internal/baseDifference.js'
 import baseFlatten from '../.internal/baseFlatten.js'
 import isArrayLikeObject from '../isArrayLikeObject.js'
 import last from '../last.js'
 
-function differenceBy(array, ...values) {
-  // 获取最后一个参数:迭代器
-  let iteratee = last(values)
-  if (isArrayLikeObject(iteratee)) {
-    iteratee = undefined
+function differenceWith(array, ...values) {
+  // 获取最后一个参数:比较器
+  let comparator = last(values)
+  if (isArrayLikeObject(comparator)) {
+    comparator = undefined
   }
   return isArrayLikeObject(array)
-    ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true), iteratee)
+    ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true), undefined, comparator)
     : []
 }
 
-console.log(differenceBy([3.1, 2.2, 1.3], [4.4, 2.5], Math.floor))
+console.log(differenceWith([3.1, 2.2, 1.3], [4.4, 2.5], Math.floor))
 
